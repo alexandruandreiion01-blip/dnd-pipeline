@@ -1,14 +1,7 @@
 import pandas as pd
 
 def extract_damage_info(spell):
-    """
-    Damage is the trickiest field because not every spell does damage.
-    Healing Word heals, Invisibility does nothing offensive, etc.
-    We need to handle all cases gracefully instead of crashing.
     
-    This is called a 'helper function' - a small focused function
-    that does one job, called by the bigger transform function below.
-    """
     damage = spell.get("damage")  # .get() returns None instead of crashing if key missing
     
     if not damage:
@@ -32,25 +25,12 @@ def extract_damage_info(spell):
     return damage_type, base_damage
 
 def extract_classes(spell):
-    """
-    Classes is a list of objects like:
-    [{"name": "Wizard"}, {"name": "Sorcerer"}]
-    
-    We flatten it to a simple comma-separated string: "Wizard, Sorcerer"
-    Databases prefer simple flat values over nested lists.
-    """
+   
     classes = spell.get("classes", [])
     return ", ".join([c["name"] for c in classes])
 
 def transform_spells(raw_spells):
-    """
-    Main transform function. Loops through all 319 raw spells,
-    pulls out the fields we care about, and builds a clean flat table.
     
-    Notice we're not crashing on missing data — we're handling it.
-    That's the difference between a pipeline that runs once and one
-    that runs reliably for months.
-    """
     rows = []
     
     for spell in raw_spells:
@@ -74,7 +54,7 @@ def transform_spells(raw_spells):
     
     df = pd.DataFrame(rows)
     
-    # Quick summary so we know what we're working with
+    
     total = len(df)
     with_damage = df["damage_type"].notna().sum()
     without_damage = df["damage_type"].isna().sum()
@@ -88,7 +68,7 @@ def transform_spells(raw_spells):
     return df
 
 if __name__ == "__main__":
-    # We import extract here only for testing this file directly
+    
     from extract import extract_all_spells
     raw = extract_all_spells()
     df = transform_spells(raw)
