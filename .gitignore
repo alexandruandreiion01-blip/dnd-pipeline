@@ -1,0 +1,6 @@
+.venv/
+raw_spells.json
+dnd.db
+__pycache__/
+*.pyc
+pipeline.log
