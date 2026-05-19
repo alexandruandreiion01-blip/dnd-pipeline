@@ -30,3 +30,8 @@ Built as a portfolio project to learn data engineering fundamentals — because 
 - SQLite — local database storage
 
 ## How to run
+
+1. Clone the repository
+2. Install dependencies: `pip install pandas requests matplotlib Pillow`
+3. Run the pipeline to fetch and store data: `python pipeline.py`
+4. Open the app: `python lookup_app.py``
