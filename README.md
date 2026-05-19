@@ -4,6 +4,8 @@ An ETL pipeline that extracts all 319 spells from the D&D 5e API, transforms the
 
 Built as a portfolio project to learn data engineering fundamentals — because analyzing magic is more fun than analyzing sales data.
 
+![D&D 5e Tome of Arcane Knowledge](screenshot.png)
+
 ## What it does
 
 - Extracts all spells from the [D&D 5e API](https://www.dnd5eapi.co/)
